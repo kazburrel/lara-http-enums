@@ -12,7 +12,6 @@ You can install the package via Composer:
 
 ```
 composer require egbosionu/lara-http-enums
-
 ```
 
 ### Usage
@@ -20,6 +19,7 @@ composer require egbosionu/lara-http-enums
 ### HTTP Status Codes
 
 ```
+php
 use Egbosionu\LaraHttpEnums\StatusCode;
 
 // Basic usage
