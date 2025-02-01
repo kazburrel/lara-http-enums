@@ -10,12 +10,14 @@ LaraHttpEnums is a simple, easy-to-use package that provides a collection of HTT
 
 You can install the package via Composer:
 
-```bash
-composer require egbosionu/lara-http-enums
+```composer require egbosionu/lara-http-enums
 ```
 
-HTTP Status Codes
+### Usage
 
+### HTTP Status Codes
+
+```
 use Egbosionu\LaraHttpEnums\StatusCode;
 
 // Basic usage
@@ -38,10 +40,11 @@ $status = StatusCode::tryFromInt(404); // StatusCode::NOT_FOUND or null if inval
 // Convert from name
 $status = StatusCode::fromName('NOT_FOUND'); // StatusCode::NOT_FOUND
 $status = StatusCode::tryFromName('NOT_FOUND'); // StatusCode::NOT_FOUND or null if invalid
+```
 
-HTTP Methods
+### HTTP Methods
 
-use Egbosionu\LaraHttpEnums\Method;
+```use Egbosionu\LaraHttpEnums\Method;
 
 // Basic usage
 $method = Method::GET;
@@ -55,9 +58,11 @@ $method->isIdempotent(); // true - multiple identical requests have same effect 
 // Convert from string
 $method = Method::fromName('GET'); // Method::GET
 $method = Method::tryFromName('GET'); // Method::GET or null if invalid
+```
 
-Reason Phrases
-use Egbosionu\LaraHttpEnums\ReasonPhrase;
+### Reason Phrases
+
+```use Egbosionu\LaraHttpEnums\ReasonPhrase;
 use Egbosionu\LaraHttpEnums\StatusCode;
 
 // Get reason phrase from status code
@@ -66,36 +71,43 @@ $text = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND)->value; // "Not Foun
 
 // Try to get reason phrase
 $phrase = ReasonPhrase::tryFromStatusCode(StatusCode::NOT_FOUND); // ReasonPhrase::NOT_FOUND or null if invalid
+```
 
-Features
-Type-safe HTTP status codes with integer values
+### Features
 
-Type-safe HTTP methods with string values
+1. Type-safe HTTP status codes with integer values
 
-Standard reason phrases for all status codes
+2. Type-safe HTTP methods with string values
 
-Helper methods for checking status code categories
+3. Standard reason phrases for all status codes
 
-Helper methods for checking method properties
+4. Helper methods for checking status code categories
 
-Case-insensitive method name parsing
+5. Helper methods for checking method properties
 
-Null-safe conversion methods
+6. Case-insensitive method name parsing
 
-Full PSR-4 autoloading support
+7. Null-safe conversion methods
 
-Contributing
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+8. Full PSR-4 autoloading support
 
-Fork the repository
+## Changelog
 
-Create your feature branch (git checkout -b feature/AmazingFeature)
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-Commit your changes (git commit -m 'Add some AmazingFeature')
+## Contributing
 
-Push to the branch (git push origin feature/AmazingFeature)
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-Open a Pull Request
+## Security Vulnerabilities
 
-License
-This package is licensed under the MIT License - see the LICENSE file for details.
+If you discover any security-related issues, please email [oegbosionu@gmail.com](mailto:oegbosionu@gmail.com) instead of using the issue tracker.
+
+## Credits
+
+- [Obiora Egbosionu](https://github.com/kazburrel)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
