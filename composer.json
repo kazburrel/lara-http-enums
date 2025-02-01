@@ -3,6 +3,13 @@
     "description": "A Laravel package for managing HTTP status codes, methods, and other related HTTP enums.",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "laravel",
+        "http",
+        "enums",
+        "status-codes",
+        "http-methods"
+    ],
     "autoload": {
         "psr-4": {
             "Egbosionu\\LaraHttpEnums\\": "src/"
@@ -14,6 +21,25 @@
             "email": "oegbosionu@gmail.com"
         }
     ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^9.0|^10.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.0",
+        "phpstan/phpstan": "^1.10",
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
+        "analyse": "vendor/bin/phpstan analyse"
+    },
+    "config": {
+        "sort-packages": true
+    },
     "minimum-stability": "stable",
-    "require": {}
+    "prefer-stable": true
 }

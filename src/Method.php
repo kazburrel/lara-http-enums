@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Egbosionu\LaraHttpEnums;
 
-use ValueError;
+use Egbosionu\LaraHttpEnums\Exceptions\InvalidHttpMethodException;
 
 /**
  * String values for HTTP Methods as defined in IETF RFC 5789 and RFC 7231.
@@ -33,7 +33,7 @@ enum Method: string
         $method = self::tryFromName($name);
 
         if ($method === null) {
-            throw new ValueError("Invalid HTTP method: \"$name\"");
+            throw new InvalidHttpMethodException($name);
         }
 
         return $method;

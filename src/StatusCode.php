@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Egbosionu\LaraHttpEnums;
 
+use Egbosionu\LaraHttpEnums\Exceptions\InvalidStatusCodeException;
 use Egbosionu\LaraHttpEnums\ReasonPhrase;
-use ValueError;
 
 /**
  * A collection of standard HTTP response codes.
  * These codes tell us what happened when a web request was made.
  * 
  * Source: IANA HTTP Status Code Registry
- * @link https://umbraco.com/knowledge-base/http-status-codes/
+ * @link https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
  */
 enum StatusCode: int
 {
@@ -88,21 +88,31 @@ enum StatusCode: int
     case NOT_EXTENDED = 510;
     case NETWORK_AUTHENTICATION_REQUIRED = 511;
 
-
     /**
      * Convert a name into a status code, or throw an error if invalid
+     *
+     * @param string|null $name The status code name
+     * @throws InvalidStatusCodeException If the name is null or invalid
+     * @return self
      */
     public static function fromName(?string $name): self
     {
         if ($name === null) {
-            throw new ValueError("Name cannot be empty");
+            throw new InvalidStatusCodeException('Status code name cannot be null');
         }
 
-        return self::from(constant("self::$name"));
+        try {
+            return self::from(constant("self::$name"));
+        } catch (\Error | \ValueError $e) {
+            throw new InvalidStatusCodeException("Invalid status code name: \"$name\"");
+        }
     }
 
     /**
      * Try to convert a name into a status code, return null if invalid
+     *
+     * @param string|null $name The status code name
+     * @return self|null
      */
     public static function tryFromName(?string $name): ?self
     {
@@ -110,19 +120,36 @@ enum StatusCode: int
             return null;
         }
 
-        return self::tryFrom(constant("self::$name"));
+        try {
+            return self::tryFrom(constant("self::$name"));
+        } catch (\Error $e) {
+            return null;
+        }
     }
 
     /**
      * Convert a number into a status code, or throw an error if invalid
+     *
+     * @param int $code The HTTP status code
+     * @throws InvalidStatusCodeException If the code is invalid
+     * @return self
      */
     public static function fromInt(int $code): self
     {
-        return self::from($code);
+        $status = self::tryFrom($code);
+
+        if ($status === null) {
+            throw new InvalidStatusCodeException($code);
+        }
+
+        return $status;
     }
 
     /**
      * Try to convert a number into a status code, return null if invalid
+     *
+     * @param int|null $code The HTTP status code
+     * @return self|null
      */
     public static function tryFromInt(?int $code): ?self
     {
@@ -131,6 +158,8 @@ enum StatusCode: int
 
     /**
      * Check if this is an informational response (100-199)
+     *
+     * @return bool
      */
     public function isInformational(): bool
     {
@@ -139,6 +168,8 @@ enum StatusCode: int
 
     /**
      * Check if this is a success response (200-299)
+     *
+     * @return bool
      */
     public function isSuccessful(): bool
     {
@@ -147,6 +178,8 @@ enum StatusCode: int
 
     /**
      * Check if this is a redirect response (300-399)
+     *
+     * @return bool
      */
     public function isRedirection(): bool
     {
@@ -155,6 +188,8 @@ enum StatusCode: int
 
     /**
      * Check if this is a client error response (400-499)
+     *
+     * @return bool
      */
     public function isClientError(): bool
     {
@@ -163,6 +198,8 @@ enum StatusCode: int
 
     /**
      * Check if this is a server error response (500-599)
+     *
+     * @return bool
      */
     public function isServerError(): bool
     {
@@ -171,6 +208,8 @@ enum StatusCode: int
 
     /**
      * Check if this is any kind of error response (400-599)
+     *
+     * @return bool
      */
     public function isError(): bool
     {
@@ -179,6 +218,8 @@ enum StatusCode: int
 
     /**
      * Get the standard text description for this status code
+     *
+     * @return string
      */
     public function getReasonPhrase(): string
     {
