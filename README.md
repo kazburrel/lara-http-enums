@@ -8,35 +8,97 @@ LaraHttpEnums is a simple, easy-to-use package that provides a collection of HTT
 
 ## Installation
 
-You can install the package via Composer:
-
-```bash
+You can install the package via Composer:``` bash
 composer require egbosionu/lara-http-enums
 ```
-Usage
-You can access HTTP status codes and methods as enums in your Laravel application. For example:
-```bash
-use Egbosionu\LaraHttpEnums\HttpStatusCode;
 
-$status = HttpStatusCode::OK; // 200
-$method = HttpStatusCode::METHOD_GET; // "GET"
-```
-Feel free to explore and extend the package with additional enums based on your project requirements.
 
-Contributing
-Contributions are welcome! Please fork the repository, create a new branch, and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
+## Usage
 
-License
-This package is licensed under the MIT License - see the LICENSE file for details.
-```bash
+### HTTP Status Codes
 
-### Sections Breakdown:
-- **Installation**: Explains how to install your package via Composer.
-- **Usage**: Provides a basic usage example, showing how the enums work.
-- **Contributing**: Encourages others to contribute to your project.
-- **License**: Mentions the license under which your package is distributed (MIT in your case).
+php
+use Egbosionu\LaraHttpEnums\StatusCode;
 
-Once you have this, you can add it to your project’s root directory, name it `README.md`, and commit the changes.
+// Basic usage
+$status = StatusCode::OK; // 200
+$status = StatusCode::NOT_FOUND; // 404
 
-Would you like help with any specific part of the README?
-```
+// Get reason phrase
+$phrase = StatusCode::OK->getReasonPhrase(); // "OK"
+
+// Check status type
+$status = StatusCode::NOT_FOUND;
+$status->isClientError(); // true
+$status->isError(); // true
+$status->isSuccessful(); // false
+
+// Convert from integer
+$status = StatusCode::fromInt(404); // StatusCode::NOT_FOUND
+$status = StatusCode::tryFromInt(404); // StatusCode::NOT_FOUND or null if invalid
+
+// Convert from name
+$status = StatusCode::fromName('NOT_FOUND'); // StatusCode::NOT_FOUND
+$status = StatusCode::tryFromName('NOT_FOUND'); // StatusCode::NOT_FOUND or null if invalid
+
+
+### HTTP Methods
+
+php
+
+use Egbosionu\LaraHttpEnums\Method;
+
+// Basic usage
+$method = Method::GET;
+$method = Method::POST;
+
+// Check method properties
+$method = Method::GET;
+$method->isSafe(); // true - doesn't modify resources
+$method->isIdempotent(); // true - multiple identical requests have same effect as single request
+
+// Convert from string
+$method = Method::fromName('GET'); // Method::GET
+$method = Method::tryFromName('GET'); // Method::GET or null if invalid
+
+
+### Reason Phrases
+
+php
+
+use Egbosionu\LaraHttpEnums\ReasonPhrase;
+use Egbosionu\LaraHttpEnums\StatusCode;
+
+// Get reason phrase from status code
+$phrase = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND); // ReasonPhrase::NOT_FOUND
+$text = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND)->value; // "Not Found"
+
+// Try to get reason phrase
+$phrase = ReasonPhrase::tryFromStatusCode(StatusCode::NOT_FOUND); // ReasonPhrase::NOT_FOUND or null if invalid
+
+
+## Features
+
+- Type-safe HTTP status codes with integer values
+- Type-safe HTTP methods with string values
+- Standard reason phrases for all status codes
+- Helper methods for checking status code categories
+- Helper methods for checking method properties
+- Case-insensitive method name parsing
+- Null-safe conversion methods
+- Full PSR-4 autoloading support
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This package is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
