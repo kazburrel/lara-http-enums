@@ -101,11 +101,17 @@ enum StatusCode: int
             throw new InvalidStatusCodeException('Status code name cannot be null');
         }
 
-        try {
-            return self::from(constant("self::$name"));
-        } catch (\Error | \ValueError $e) {
-            throw new InvalidStatusCodeException("Invalid status code name: \"$name\"");
+        // Convert to uppercase for enum case matching
+        $uppercaseName = strtoupper($name);
+
+        // Find matching case
+        foreach (self::cases() as $case) {
+            if ($case->name === $uppercaseName) {
+                return $case;
+            }
         }
+
+        throw new InvalidStatusCodeException("Invalid status code name: \"$name\"");
     }
 
     /**
@@ -116,15 +122,20 @@ enum StatusCode: int
      */
     public static function tryFromName(?string $name): ?self
     {
-        if ($name === null || !defined("self::$name")) {
+        if ($name === null) {
             return null;
         }
 
-        try {
-            return self::tryFrom(constant("self::$name"));
-        } catch (\Error $e) {
-            return null;
+        // Convert to uppercase for enum case matching
+        $uppercaseName = strtoupper($name);
+
+        foreach (self::cases() as $case) {
+            if ($case->name === $uppercaseName) {
+                return $case;
+            }
         }
+
+        return null;
     }
 
     /**

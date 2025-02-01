@@ -15,6 +15,11 @@
             "Egbosionu\\LaraHttpEnums\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "kazburrel",
@@ -26,19 +31,23 @@
         "illuminate/support": "^9.0|^10.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
         "orchestra/testbench": "^8.0",
-        "phpstan/phpstan": "^1.10",
-        "friendsofphp/php-cs-fixer": "^3.0"
+        "pestphp/pest": "^2.36",
+        "pestphp/pest-plugin-laravel": "^2.4",
+        "phpstan/phpstan": "^1.10"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
         "analyse": "vendor/bin/phpstan analyse"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true

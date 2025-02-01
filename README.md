@@ -80,7 +80,7 @@ composer require egbosionu/lara-http-enums
 
     // Get reason phrase from status code
     $phrase = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND); // ReasonPhrase::NOT_FOUND
-    
+
     $text = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND)->value; // "Not Found"
 
     // Try to get reason phrase
@@ -104,6 +104,12 @@ composer require egbosionu/lara-http-enums
 7. Null-safe conversion methods
 
 8. Full PSR-4 autoloading support
+
+## Testing
+
+Please see [CONTRIBUTING](TESTING.md) for details on running tests.
+
+
 
 ## Changelog
 
