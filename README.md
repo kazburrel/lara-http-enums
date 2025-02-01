@@ -1,6 +1,6 @@
 # LaraHttpEnums
 
-**A Laravel package for managing HTTP status codes, methods, and other related HTTP enums.**
+**A Laravel package for managing HTTP status codes, methods and other related HTTP enums.**
 
 ## Description
 
