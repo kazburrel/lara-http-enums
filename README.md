@@ -10,7 +10,9 @@ LaraHttpEnums is a simple, easy-to-use package that provides a collection of HTT
 
 You can install the package via Composer:
 
-```composer require egbosionu/lara-http-enums
+```
+composer require egbosionu/lara-http-enums
+
 ```
 
 ### Usage
