@@ -1,10 +1,10 @@
 # LaraHttpEnums
 
-**A Laravel package for managing HTTP status codes, methods, and other related HTTP enums.**
+**A Laravel package for managing HTTP status codes, methods and other related HTTP enums.**
 
 ## Description
 
-LaraHttpEnums is a simple, easy-to-use package that provides a collection of HTTP status codes, methods, and related enums to be used in your Laravel projects. This package helps streamline working with HTTP-related constants, improving readability and consistency in your code.
+LaraHttpEnums is a simple, easy-to-use package that provides a collection of HTTP status codes, methods and related enums to be used in your Laravel projects. This package helps streamline working with HTTP-related constants, improving readability and consistency in your code.
 
 ## Installation
 
