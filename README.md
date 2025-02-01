@@ -8,16 +8,13 @@ LaraHttpEnums is a simple, easy-to-use package that provides a collection of HTT
 
 ## Installation
 
-You can install the package via Composer:``` bash
+You can install the package via Composer:
+
+```bash
 composer require egbosionu/lara-http-enums
-```
 
+HTTP Status Codes
 
-## Usage
-
-### HTTP Status Codes
-
-php
 use Egbosionu\LaraHttpEnums\StatusCode;
 
 // Basic usage
@@ -41,10 +38,7 @@ $status = StatusCode::tryFromInt(404); // StatusCode::NOT_FOUND or null if inval
 $status = StatusCode::fromName('NOT_FOUND'); // StatusCode::NOT_FOUND
 $status = StatusCode::tryFromName('NOT_FOUND'); // StatusCode::NOT_FOUND or null if invalid
 
-
-### HTTP Methods
-
-php
+HTTP Methods
 
 use Egbosionu\LaraHttpEnums\Method;
 
@@ -61,11 +55,7 @@ $method->isIdempotent(); // true - multiple identical requests have same effect 
 $method = Method::fromName('GET'); // Method::GET
 $method = Method::tryFromName('GET'); // Method::GET or null if invalid
 
-
-### Reason Phrases
-
-php
-
+Reason Phrases
 use Egbosionu\LaraHttpEnums\ReasonPhrase;
 use Egbosionu\LaraHttpEnums\StatusCode;
 
@@ -76,29 +66,35 @@ $text = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND)->value; // "Not Foun
 // Try to get reason phrase
 $phrase = ReasonPhrase::tryFromStatusCode(StatusCode::NOT_FOUND); // ReasonPhrase::NOT_FOUND or null if invalid
 
+Features
+Type-safe HTTP status codes with integer values
 
-## Features
+Type-safe HTTP methods with string values
 
-- Type-safe HTTP status codes with integer values
-- Type-safe HTTP methods with string values
-- Standard reason phrases for all status codes
-- Helper methods for checking status code categories
-- Helper methods for checking method properties
-- Case-insensitive method name parsing
-- Null-safe conversion methods
-- Full PSR-4 autoloading support
+Standard reason phrases for all status codes
 
-## Contributing
+Helper methods for checking status code categories
 
+Helper methods for checking method properties
+
+Case-insensitive method name parsing
+
+Null-safe conversion methods
+
+Full PSR-4 autoloading support
+
+Contributing
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Fork the repository
 
-## License
+Create your feature branch (git checkout -b feature/AmazingFeature)
 
-This package is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Commit your changes (git commit -m 'Add some AmazingFeature')
 
+Push to the branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+License
+This package is licensed under the MIT License - see the LICENSE file for details.
