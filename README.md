@@ -12,6 +12,7 @@ You can install the package via Composer:
 
 ```bash
 composer require egbosionu/lara-http-enums
+```
 
 HTTP Status Codes
 
