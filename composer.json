@@ -1,0 +1,19 @@
+{
+    "name": "egbosionu/lara-http-enums",
+    "description": "A Laravel package for managing HTTP status codes, methods, and other related HTTP enums.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Egbosionu\\LaraHttpEnums\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kazburrel",
+            "email": "oegbosionu@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
