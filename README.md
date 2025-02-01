@@ -18,61 +18,73 @@ composer require egbosionu/lara-http-enums
 
 ### HTTP Status Codes
 
-```
-php
-use Egbosionu\LaraHttpEnums\StatusCode;
+```php
+    use Egbosionu\LaraHttpEnums\StatusCode;
 
-// Basic usage
-$status = StatusCode::OK; // 200
-$status = StatusCode::NOT_FOUND; // 404
+    // Basic usage
+    $status = StatusCode::OK; // 200
 
-// Get reason phrase
-$phrase = StatusCode::OK->getReasonPhrase(); // "OK"
+    $status = StatusCode::NOT_FOUND; // 404
 
-// Check status type
-$status = StatusCode::NOT_FOUND;
-$status->isClientError(); // true
-$status->isError(); // true
-$status->isSuccessful(); // false
+    // Get reason phrase
+    $phrase = StatusCode::OK->getReasonPhrase(); // "OK"
 
-// Convert from integer
-$status = StatusCode::fromInt(404); // StatusCode::NOT_FOUND
-$status = StatusCode::tryFromInt(404); // StatusCode::NOT_FOUND or null if invalid
+    // Check status type
+    $status = StatusCode::NOT_FOUND;
 
-// Convert from name
-$status = StatusCode::fromName('NOT_FOUND'); // StatusCode::NOT_FOUND
-$status = StatusCode::tryFromName('NOT_FOUND'); // StatusCode::NOT_FOUND or null if invalid
+    $status->isClientError(); // true
+
+    $status->isError(); // true
+
+    $status->isSuccessful(); // false
+
+    // Convert from integer
+    $status = StatusCode::fromInt(404); // StatusCode::NOT_FOUND
+
+    $status = StatusCode::tryFromInt(404); // StatusCode::NOT_FOUND or null if invalid
+
+    // Convert from name
+    $status = StatusCode::fromName('NOT_FOUND'); // StatusCode::NOT_FOUND
+
+    $status = StatusCode::tryFromName('NOT_FOUND'); // StatusCode::NOT_FOUND or null if invalid
 ```
 
 ### HTTP Methods
 
-```use Egbosionu\LaraHttpEnums\Method;
+```php
+    use Egbosionu\LaraHttpEnums\Method;
 
-// Basic usage
-$method = Method::GET;
-$method = Method::POST;
+    // Basic usage
+    $method = Method::GET;
 
-// Check method properties
-$method = Method::GET;
-$method->isSafe(); // true - doesn't modify resources
-$method->isIdempotent(); // true - multiple identical requests have same effect as single request
+    $method = Method::POST;
 
-// Convert from string
-$method = Method::fromName('GET'); // Method::GET
-$method = Method::tryFromName('GET'); // Method::GET or null if invalid
+    // Check method properties
+    $method = Method::GET;
+
+    $method->isSafe(); // true - doesn't modify resources
+
+    $method->isIdempotent(); // true - multiple identical requests have same effect as single request
+
+    // Convert from string
+    $method = Method::fromName('GET'); // Method::GET
+
+    $method = Method::tryFromName('GET'); // Method::GET or null if invalid
 ```
 
 ### Reason Phrases
 
-```use Egbosionu\LaraHttpEnums\ReasonPhrase;
-use Egbosionu\LaraHttpEnums\StatusCode;
+```php
+    use Egbosionu\LaraHttpEnums\ReasonPhrase;
+    use Egbosionu\LaraHttpEnums\StatusCode;
 
-// Get reason phrase from status code
-$phrase = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND); // ReasonPhrase::NOT_FOUND
-$text = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND)->value; // "Not Found"
+    // Get reason phrase from status code
+    $phrase = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND); // ReasonPhrase::NOT_FOUND
+    
+    $text = ReasonPhrase::fromStatusCode(StatusCode::NOT_FOUND)->value; // "Not Found"
 
-// Try to get reason phrase
-$phrase = ReasonPhrase::tryFromStatusCode(StatusCode::NOT_FOUND); // ReasonPhrase::NOT_FOUND or null if invalid
+    // Try to get reason phrase
+    $phrase = ReasonPhrase::tryFromStatusCode(StatusCode::NOT_FOUND); // ReasonPhrase::NOT_FOUND or null if invalid
 ```
 
 ### Features
