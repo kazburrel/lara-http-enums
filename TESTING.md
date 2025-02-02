@@ -1,11 +1,11 @@
- # Testing
+# Testing
 
 This document provides information about testing the LaraHttpEnums package.
 
 ## Requirements
 
 - PHP 8.2 or higher
-- PHPUnit 10.0 or higher
+- Pest 2.0 or higher
 - Composer
 
 ## Running Tests
@@ -16,10 +16,10 @@ You can run the test suite using Composer:
 composer test
 ```
 
-Or directly with PHPUnit:
+Or directly with Pest:
 
 ```bash
-./vendor/bin/phpunit
+./vendor/bin/pest
 ```
 
 ## Test Structure
@@ -32,10 +32,7 @@ The tests are organized into the following categories:
 - `tests/Unit/MethodTest.php` - Tests for HTTP method enum
 - `tests/Unit/ReasonPhraseTest.php` - Tests for reason phrase enum
 
-### Feature Tests
-
-- `tests/Feature/StatusCodeUsageTest.php` - Integration tests for status codes
-- `tests/Feature/MethodUsageTest.php` - Integration tests for methods
+// ... existing code ...
 
 ## Writing Tests
 
@@ -49,19 +46,13 @@ When adding new features or fixing bugs, please ensure:
 Example test structure:
 
 ```php
-namespace Egbosionu\LaraHttpEnums\Tests\Unit;
-
-use PHPUnit\Framework\TestCase;
 use Egbosionu\LaraHttpEnums\StatusCode;
 
-class StatusCodeTest extends TestCase
-{
-    public function test_can_get_reason_phrase(): void
-    {
-        $status = StatusCode::OK;
-        $this->assertEquals('OK', $status->getReasonPhrase());
-    }
-}
+test('can get reason phrase', function () {
+    $status = StatusCode::OK;
+    
+    expect($status->getReasonPhrase())->toBe('OK');
+});
 ```
 
 ## Code Coverage
