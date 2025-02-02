@@ -107,7 +107,7 @@ composer require egbosionu/lara-http-enums
 
 ## Testing
 
-Please see [CONTRIBUTING](TESTING.md) for details on running tests.
+Please see [TESTING](TESTING.md) for details on running tests.
 
 
 
