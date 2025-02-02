@@ -90,13 +90,9 @@ enum ReasonPhrase: string
      */
     public static function fromStatusCode(StatusCode $statusCode): self
     {
-        return self::from(match ($statusCode) {
-            StatusCode::OK => 'OK',
-            StatusCode::NOT_FOUND => 'Not Found',
-            StatusCode::INTERNAL_SERVER_ERROR => 'Internal Server Error',
-                // ... add other matches as needed
-            default => throw new \ValueError("No reason phrase defined for status code: {$statusCode->value}")
-        });
+        // Since the enum cases match between StatusCode and ReasonPhrase,
+        // we can directly use the name to get the corresponding ReasonPhrase
+        return self::from($statusCode->name);
     }
 
     /**
