@@ -105,12 +105,6 @@ composer require egbosionu/lara-http-enums
 
 8. Full PSR-4 autoloading support
 
-## Testing
-
-Please see [TESTING](TESTING.md) for details on running tests.
-
-
-
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
